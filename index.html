@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora Pocamarket</title>
+<style>
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f3ef; /* Beige claro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+}
+
+.logo {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.logo img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.username {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+.decorative-line {
+    margin: 10px auto 20px auto;
+    width: 50px;
+    height: 2px;
+    background: linear-gradient(to right, #000 50%, transparent 100%);
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #000;
+}
+
+.calculator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+input[type="number"], input[type="text"] {
+    width: 100px;
+    padding: 10px;
+    border-radius: 25px;
+    border: 2px solid #000;
+    text-align: center;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: none;
+    background-color: #FFD6B8; /* Durazno claro */
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #ffbfa0;
+}
+
+.label {
+    font-size: 14px;
+    margin-top: 5px;
+    display: block;
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="logo">
+        <img src="logo.png" alt="Logo">
+    </div>
+    <div class="username">shushu.linos</div>
+    <div class="decorative-line"></div>
+    <h2>Calcular precio pocamarket!</h2>
+    <div class="calculator">
+        <div>
+            <input type="number" id="usd" placeholder="USD">
+            <span class="label">dólares</span>
+        </div>
+        <button onclick="calcular()">Calcular</button>
+        <div>
+            <input type="text" id="resultado" placeholder="$0,00" readonly>
+            <span class="label">precio final</span>
+        </div>
+    </div>
+</div>
+
+<script>
+function calcular() {
+    const usd = parseFloat(document.getElementById('usd').value);
+    if (isNaN(usd) || usd <= 0) {
+        alert('Ingrese una cantidad válida');
+        return;
+    }
+
+    const tasaEfectiva = 1450; // Dólar + impuestos
+    const recargoFijo = 1000;  // Recargo fijo
+
+    const total = usd * tasaEfectiva + recargoFijo;
+
+    document.getElementById('resultado').value = `$${total.toLocaleString('es-AR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+}
+</script>
+
+</body>
+</html>
+
